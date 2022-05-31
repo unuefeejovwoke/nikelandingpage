@@ -13,13 +13,46 @@ a{
     position: absolute;
     top: 0;
     left: 0;
-    background: url('../images/shoe3.jpg');
+    background: url('https://images.unsplash.com/photo-1603808033192-082d6919d3e1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHNob2VzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60');
     background-size: cover;
     background-position-x: 20%;
     background-position-y: 20%;
     width: 100%;
     height: 100vh;
     z-index: -1;
+    animation: introLoad 3s forwards;
+}
+
+.btn:hover{
+    background-color: transparent;
+    border: 2px solid #fa9806;
+}
+
+.btn{
+   height: 60px;
+   margin-top: 10px;
+   border: none;
+   width: 150px;
+   background-color: #fa9806;
+   border-radius: 10px;
+   text-align: center;
+   cursor: pointer;
+
+   .btn-title{
+       color: white;
+       font-weight: bold;
+       display: inline-flex;
+    
+       .explore{
+           stroke: white;
+           width: .8em;
+           padding-left: .8em;
+           
+           path{
+                fill: white;
+            }
+       }
+   }
 }
 
 .logo{
@@ -28,7 +61,39 @@ a{
 }
 
 nav{
-    display: none;
+    position: fixed;
+    right: 0;
+    top: 0;
+    background: #ffffff;
+    height: 100vh;
+    width: 50%;
+    z-index: 999;
+    text-transform: uppercase;
+    transform: translateX(100%);
+    transition: transform .5s ease-in-out;
+
+    ul{
+        list-style: none;
+        padding: 0;
+        margin-top: 8em;
+
+        a{
+            color: #fa9806;
+            padding: .75em 2em;
+            display: block;
+
+            &:hover{
+                background: #fa9806;
+                color: white;
+            }
+        }
+    }
+
+    .close{
+        float: right;
+        margin: 1em;
+        width: 2.5em;
+    }
 }
 
 header{
@@ -36,7 +101,7 @@ header{
     justify-content: space-between;
 
     svg{
-        width: 3em;
+        width: 2.3em;
         margin-top: -.6em;
         cursor: pointer;
     }
@@ -49,20 +114,326 @@ h1{
 }
 
 .subhead{
-    font-size: 1.4rem;
+    font-size: 1.2rem;
 }
 
 section.hero{
     color: white;
     height: 90vh;
+    animation: moveDown 1s ease-in-out forwards;
+    opacity: 0;
 
     .down-arrow{
         stroke: white;
         position: absolute;
         bottom: 2em;
         width: 1em;
+        animation: moveArrow 1s alternate-reverse infinite;
         path{
             fill: white;
         }
     }
 }
+
+.more-info{
+
+    img{
+        width: 100%;
+        object-fit: cover;
+        height: 13em;
+    }
+
+    .title{
+        font-weight: bold;
+        font-size: 1.25rem;
+    }
+    .desc{
+        line-height: 1.5rem;
+    }
+}
+
+.open-nav{
+    transform: translateX(0%);
+}
+
+@media only screen and (min-width: 680px) {
+    
+    body{
+        margin: 1.5em 5em;
+        font-family: 'Poppins', sans-serif;
+    }
+}
+
+@media only screen and (min-width: 920px) {
+    
+    .menu{
+        display: none;
+    }
+
+    nav{
+        transform: translateX(0);
+        position: unset;
+        display: block;
+        width: auto;
+        height: auto;
+        background: none;
+
+        svg.close{
+            display: none;
+        }
+
+        ul{
+            display: flex;
+            margin: 0;
+
+            a{
+                color: white;
+                padding: .5em 1.5em;
+                font-size: 1rem;
+                font-weight: bold;
+
+                &:hover{
+                    background: none;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .hero-img{
+        left: unset;
+        right: 0;
+        width: 50%;
+        height: 33em;
+    }
+
+    .logo{
+        color: #000000;
+
+        span{
+            color: #fa9806;
+        }
+    }
+
+    section.hero{
+        color: #000000;
+        height: auto;
+        width: 40%;
+        margin-bottom: 8em;
+
+        svg.down-arrow{
+            stroke: black;
+            position: unset;
+            height: 2rem;
+
+            path{
+                fill: black;
+            }
+        }
+    }
+
+    .btn-title:hover{
+        color: rgb(14, 14, 14);
+     
+        .explore{
+            stroke: rgb(0, 0, 0);
+            width: .8em;
+            padding-left: .8em;
+            
+            path{
+                 fill: rgb(0, 0, 0);
+             }
+        }
+    }
+
+    .feature{
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        gap: 3em;
+        margin-bottom: 8em;
+
+        img{
+            width: 25em;
+            height: 20em;
+        }
+
+        .content{
+            text-align: right;
+            width: 25em;
+        }
+    }
+
+    .feature.left{
+        grid-template-areas: "left right";
+
+        img{
+            grid-area: left;
+        }
+        .content{
+            text-align: left;
+            width: 25em;
+            justify-self: left;
+        }
+
+
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .wrapper{
+        width: 1200px;
+        margin: 0 auto;
+    }
+
+    .feature{
+        gap: 0;
+    }
+}
+
+@keyframes introLoad {
+    from{
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+    to{
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+}
+
+@keyframes moveArrow {
+    from{
+        transform: translateY(-30px);
+    }
+    to{
+        transform: translateY(0);
+    }
+}
+
+@keyframes moveDown {
+    from{
+        transform: translateY(-100px);
+    }
+    to{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.payment{
+    background: #f8f8f8;
+    max-width: 360px;
+    margin: 80px auto;
+    height: auto;
+    padding: 35px;
+    padding-top: 70px;
+    border-radius: 5px;
+    position: relative;
+  }
+  
+  .payment h2{
+    text-align: center;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    color: #fa9806;
+  }
+  
+  .form .label{
+    display: block;
+    color: #555555;
+    margin-bottom: 6px;
+  }
+  
+  .input{
+    padding: 13px 0px 13px 25px;
+    width: 100%;
+    text-align: center;
+    border: 2px solid #dddddd;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    word-spacing: 3px;
+    outline: none;
+    font-size: 16px;
+    color: #555555;
+  }
+  
+  .card-grp{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .card-item{
+    width: 48%;
+  }
+  
+  .space{
+    margin-bottom: 20px;
+  }
+  
+  .icon-relative{
+    position: relative;
+  }
+  
+  .icon-relative .fas,
+  .icon-relative .far{
+    position: absolute;
+    bottom: 12px;
+    left: 15px;
+    font-size: 20px;
+    color: #555555;
+  }
+  
+  .btns{
+    margin-top: 40px;
+    background: #fa9806;
+    padding: 12px;
+    text-align: center;
+    color: #f8f8f8;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  
+  .payment-logo{
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 100px;
+    background: #f8f8f8;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    text-align: center;
+    line-height: 85px;
+  }
+  
+  .payment-logo:before{
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 90px;
+    height: 90px;
+    background: #fa9806;
+    border-radius: 50%;
+  }
+  
+  .payment-logo p{
+    position: relative;
+    color: #f8f8f8;
+    font-family: 'Poppins', sans-serif;
+    font-size: 58px;
+  }
+  
+  
+  @media screen and (max-width: 420px){
+    .card-grp{
+      flex-direction: column;
+    }
+    .card-item{
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .btns{
+      margin-top: 20px;
+    }
+  }
